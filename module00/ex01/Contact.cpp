@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:48:16 by raaga             #+#    #+#             */
-/*   Updated: 2022/10/12 18:20:42 by raaga            ###   ########.fr       */
+/*   Updated: 2022/10/12 19:07:58 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,36 @@
 #include "Contact.hpp"
 
 Contact::Contact( void ){
-    std::cout << "constructor called" << std::endl;
+    std::cout << "constructor Contact called" << std::endl;
     return ;
 }
 
 Contact::~Contact( void ){
-    std::cout << "destructor called" << std::endl;
+    std::cout << "destructor Contact called" << std::endl;
     return ;
 }
 
-void    set_first_name(std::string input)
+void    Contact::set_first_name(std::string input)
 {
-    this->_first_name;
+    this->_first_name = input;
 }
 
-void    set_last_name(std::string input)
+void    Contact::set_last_name(std::string input)
 {
-    this->_last_name;
+    this->_last_name = input;
 }
 
-void    set_nick_name(std::string input)
+void    Contact::set_nick_name(std::string input)
 {
-    this->_nick_name;
+    this->_nick_name = input;
 }
 
-void    set_phone_number(std::string input)
+void    Contact::set_phone_number(std::string input)
 {
-    this->phone_number;
+    this->_phone_number = input;
 }
 
-void    set_darkest_secret(std::string input)
+void    Contact::set_darkest_secret(std::string input)
 {
-    this->darkest_secret;
+    this->_darkest_secret = input;
 }

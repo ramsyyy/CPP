@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:40:31 by raaga             #+#    #+#             */
-/*   Updated: 2022/10/12 18:24:28 by raaga            ###   ########.fr       */
+/*   Updated: 2022/10/12 19:12:19 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 class Contact {
 
 public:
-    Contact();
-    ~Contact();
+    Contact(void);
+    ~Contact(void);
     void set_first_name(std::string input);
     void set_last_name(std::string input);
     void set_nick_name(std::string input);
     void set_phone_number(std::string input);
-    void set_darkest_number(std::string input);
+    void set_darkest_secret(std::string input);
     
 private:
     
