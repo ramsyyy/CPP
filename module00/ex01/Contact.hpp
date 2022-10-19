@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ramsy <ramsy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:40:31 by raaga             #+#    #+#             */
-/*   Updated: 2022/10/13 18:22:57 by raaga            ###   ########.fr       */
+/*   Updated: 2022/10/18 20:21:16 by ramsy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ public:
 	void	get_phone_number( void );
 	void	set_darkest_secret(std::string input);
 	void	get_darkest_secret( void );
+	void	set_index(int i);
+	void	get_index( void );
+	void	get_contact(std::string str);
+	void	get_all( void );
 	
 private:
 	
@@ -38,6 +42,7 @@ private:
 	std::string _nick_name;
 	std::string _phone_number;
 	std::string _darkest_secret;
+	int			_index;
 };
 
 #endif

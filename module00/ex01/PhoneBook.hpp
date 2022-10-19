@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ramsy <ramsy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:12:29 by raaga             #+#    #+#             */
-/*   Updated: 2022/10/13 18:13:36 by raaga            ###   ########.fr       */
+/*   Updated: 2022/10/18 20:48:37 by ramsy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,19 @@
 
 class PhoneBook {
 
+private:
+
+    Contact _contact[8];
+    int _index;
+    int _nb_contact;
 public:
-    
-    int foo = 10;
-    Contact tab_contact[8] ;
-    
+
     PhoneBook(void);
     ~PhoneBook(void);
 
-    void    add_new(Contact *new_contact);
+    void    add_new();
+    void    get_nb_contact( void );
+    void    search();
 };
 
 #endif
