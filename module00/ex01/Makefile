@@ -51,4 +51,4 @@ fclean: clean
 
 re : fclean all 
 	
-.PHONY:	fclean re all clean show
+.PHONY:	fclean re all clean
