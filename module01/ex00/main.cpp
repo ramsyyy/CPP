@@ -6,36 +6,29 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:44:15 by raaga             #+#    #+#             */
-/*   Updated: 2022/10/21 18:21:30 by raaga            ###   ########.fr       */
+/*   Updated: 2022/10/27 14:41:11 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
 void		randomChup( std::string name ) {
-	Zombie neww;
-	
-	neww.setName(name);
+	Zombie neww = Zombie(name);
+
 	neww.announce();
 }
 
 Zombie		*newZombie( std::string name ) {
-	Zombie *neww;
-
-	
-	neww->setName(name);
-	std::cout << "jsuis la " << std::endl;
-	return (neww);
+	return (new Zombie(name));
 }
-
 
 int main()
 {
 	Zombie *z1;
 
 	z1 = newZombie("ramssssss");
-	//z1->announce();
-	//randomChup("ramsy");
-	
+	z1->announce();
+	randomChup("ramsy");
+	delete z1;
 	return (0);
 }
