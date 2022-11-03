@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:05:28 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/02 17:04:13 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/03 15:43:34 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 #include <iostream>
 
 Fixed::Fixed( void ) {
-	std::cout << "constructor called" << std::endl;
+	std::cout << "Default  constructor called" << std::endl;
 	this->_nb = 0;
 }
 
+Fixed   &Fixed::operator=( Fixed const &copie ) {
+	std::cout << "Copy assignment operator called " <<std::endl;
+	this->_nb = getRawBits();
+	return (*this);
+}
+
 Fixed::Fixed( Fixed const &copie ) {
-	std::cout << "constructor of copy called" << std::endl;
-	this->_nb = copie._nb;
+	std::cout << "copy constructor  called" << std::endl;
+	*this = copie ;
 }
 
 Fixed::~Fixed( void ) {
@@ -28,15 +34,10 @@ Fixed::~Fixed( void ) {
 }
 
 int     Fixed::getRawBits( void ) const {
+	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_nb);
 }
 
 void    Fixed::setRawBits( int const raw ) {
 	this->_nb = raw;
 }
-
-Fixed   Fixed::operator=( Fixed const &copie ) const {
-	this->_nb = copie.getRawBits() ;
-	return (this);
-}
-

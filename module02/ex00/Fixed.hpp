@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:04:01 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/02 17:00:38 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/03 15:43:50 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 
 class Fixed {
     public:
+        
         Fixed( void );
+        Fixed   &operator=( Fixed const &copie ) ;
         Fixed( Fixed const &copie );
         ~Fixed( void );
 
-        Fixed   operator=( Fixed const &copie ) const;
         int     getRawBits( void ) const ;
         void    setRawBits( int const raw ) ;
     
