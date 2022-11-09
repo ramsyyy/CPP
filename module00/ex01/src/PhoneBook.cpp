@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:16:21 by raaga             #+#    #+#             */
-/*   Updated: 2022/10/20 20:50:24 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/09 12:07:06 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,19 +126,23 @@ void	PhoneBook::search( void )
 {
 	std::string str;
 	
-	if (this->_index == -1) return ;
+	if (this->_index == -1) {
+		std::cout << "Vous avez 0 contact" << std::endl;
+		getline(std::cin, str);
+		return ;
+	}
 	for (int i = 0; i < this->_nb_contact; i++)
 	{
 		this->_contact[i].get_all();
 	}
 	while (1)
 	{
-		std::cout << "Quelle contact afficher?(entrez l'index du contact) " << std::endl;
+		std::cout << "Quelle contact afficher?(entrez l'index du contact) " << std::endl << "Tapez EXIT pour quitter " << std::endl;
 		while (str.length() != 1)
 		{
 			std::cout << ":";
 			getline(std::cin, str);
-			if (std::cin.eof())
+			if (std::cin.eof() || str=="EXIT")
 				return ;
 			if (is_num(str) == 0) str = "";
 		}

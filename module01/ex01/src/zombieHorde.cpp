@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 16:00:00 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/07 14:27:59 by raaga            ###   ########.fr       */
+/*   Created: 2022/11/07 16:21:22 by raaga             #+#    #+#             */
+/*   Updated: 2022/11/07 16:21:45 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#include "../include/Zombie.hpp"
 
-int main() {
-    Point const a(3, 1);
-    Point const b(5, 4);
-    Point const c(1, 4);
-    Point const point(2, 2.5);
-
-
-    std::cout << "lalala" << bsp(a,b, c, point) << std::endl;
-    return (0);
+Zombie      *zombieHorde( int N, std::string name ) {
+    Zombie *zombieHorde = new Zombie[N];
+    for (int i = 0; i < N; i++) zombieHorde[i].set_name(name);
+    return (zombieHorde);
 }

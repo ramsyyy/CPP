@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:46:41 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/04 16:23:14 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/07 14:03:52 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ class Point {
         Fixed _x;
         Fixed _y;
 };
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 #endif

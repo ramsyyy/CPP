@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 16:00:00 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/07 14:27:59 by raaga            ###   ########.fr       */
+/*   Created: 2022/10/27 17:20:58 by raaga             #+#    #+#             */
+/*   Updated: 2022/11/09 17:09:52 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
 
-int main() {
-    Point const a(3, 1);
-    Point const b(5, 4);
-    Point const c(1, 4);
-    Point const point(2, 2.5);
+#include <string>
+#include "Weapon.hpp"
 
+class HumanB {
+    private:
+        std::string const _name;
+        Weapon *_weapon; 
 
-    std::cout << "lalala" << bsp(a,b, c, point) << std::endl;
-    return (0);
-}
+    public:
+        HumanB( std::string  const name );
+        ~HumanB( void );
+        void    attack( void ) const ;
+        void    setWeapon(Weapon &weapon);
+};
+
+#endif

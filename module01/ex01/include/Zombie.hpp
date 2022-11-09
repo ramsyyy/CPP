@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 16:00:00 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/07 14:27:59 by raaga            ###   ########.fr       */
+/*   Created: 2022/10/27 14:47:55 by raaga             #+#    #+#             */
+/*   Updated: 2022/11/07 16:22:03 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#ifndef ZOMBIE_H
+# define ZOMBIE_H
 
-int main() {
-    Point const a(3, 1);
-    Point const b(5, 4);
-    Point const c(1, 4);
-    Point const point(2, 2.5);
+# include <iostream>
+# include <string>
 
+class Zombie {
+    public :
+        Zombie( void );
+        ~Zombie( void );
+        
+        static int index;
+        int nb;
+        void        set_name( std::string name );
+        void        announce( void );
+    private :
+        std::string _name;
+};
 
-    std::cout << "lalala" << bsp(a,b, c, point) << std::endl;
-    return (0);
-}
+Zombie      *zombieHorde( int N, std::string name );
+
+#endif

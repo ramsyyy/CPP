@@ -1,17 +1,19 @@
-NAME = PhoneBook
+NAME = Human
 
 SRC_DIR = src
 
 SRC =	main.cpp \
-		Contact.cpp \
-		PhoneBook.cpp \
+		HumanA.cpp\
+		HumanB.cpp\
+		Weapon.cpp\
 
 vpath %.cpp $(foreach dir, $(SRC_DIR), $(dir):)
 
 INC_DIR =	$(shell find include -type d)
 
-INC =	./include/Contact.hpp\
-		./include/PhoneBook.hpp\
+INC =	./include/HumanA.hpp \
+		./include/HumanB.hpp \
+		./include/Weapon.hpp \
 
 CC = c++
 
@@ -26,12 +28,12 @@ OBJS	=	$(addprefix $(OBJ_DIR)/, $(SRC:%.cpp=%.o)) \
 
 all:
 	
-	@echo "\n $(NAME) compiling...\c"
-	@make $(NAME)
+	@echo "\n $(NAME) compiling...\n"
+	@make --no-print-directory $(NAME)
 	@echo "\n\n............SUCCESS.........."
 
 $(NAME) : $(OBJS) 
-	@$(CC)  $(FLAGS)  $(SRC_DIR)/* -o $(NAME)
+	@$(CC)  $(SRC_DIR)/* -o $(NAME)
 
 -include $(addprefix $(OBJ_DIR)/, $(SRC:%.cpp=%.d))
 
@@ -48,6 +50,7 @@ clean:
 fclean: clean
 	@echo "----deleting binary file $(NAME)----\n"
 	@rm -f $(NAME)
+	@rm -rf ./$(OBJ_DIR)
 
 re : fclean all 
 	

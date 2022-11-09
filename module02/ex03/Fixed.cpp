@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 15:45:48 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/04 16:27:16 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/07 14:29:41 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Fixed::Fixed( int const integer ) {
 
 Fixed::Fixed( float const floater ) {
     //std::cout << "converter float constructor called" << std::endl;
-    this->_nb = std::roundf(floater * (1<<8));
+    this->_nb = roundf(floater * (1<<8));
 }
 
 Fixed::Fixed( Fixed const &copie ) {

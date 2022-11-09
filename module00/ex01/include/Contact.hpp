@@ -6,15 +6,15 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:40:31 by raaga             #+#    #+#             */
-/*   Updated: 2022/10/27 16:32:28 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/07 16:05:54 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_H
-# define CONTACT_H
+# define  CONTACT_H
 
 # include <string>
-# include <stdlib.h>
+# include <stdlib.h> 
 # include <sstream> 
 # include <iostream> 
 

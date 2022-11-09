@@ -5,20 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 16:00:00 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/07 14:27:59 by raaga            ###   ########.fr       */
+/*   Created: 2022/10/27 14:49:11 by raaga             #+#    #+#             */
+/*   Updated: 2022/11/09 18:23:07 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#include "../include/Zombie.hpp"
 
-int main() {
-    Point const a(3, 1);
-    Point const b(5, 4);
-    Point const c(1, 4);
-    Point const point(2, 2.5);
+int main()
+{
+	Zombie *z1 = zombieHorde(42, "ramsy");
 
-
-    std::cout << "lalala" << bsp(a,b, c, point) << std::endl;
-    return (0);
+    z1->announce();
+    for (int i = 0; i < 42; i++) z1[i].announce();
+    delete [] z1;
+	return (0);
 }

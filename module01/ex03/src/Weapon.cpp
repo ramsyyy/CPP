@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 16:00:00 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/07 14:27:59 by raaga            ###   ########.fr       */
+/*   Created: 2022/10/27 16:40:50 by raaga             #+#    #+#             */
+/*   Updated: 2022/11/09 17:07:34 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#include "../include/Weapon.hpp"
 
-int main() {
-    Point const a(3, 1);
-    Point const b(5, 4);
-    Point const c(1, 4);
-    Point const point(2, 2.5);
+Weapon::Weapon( std::string type ) : _type(type) {
+	std::cout << "constructor called Weapon" << std::endl;
+}
 
+Weapon::~Weapon( void ) {
+	std::cout << "destructor called Weapon" << std::endl;
+}
 
-    std::cout << "lalala" << bsp(a,b, c, point) << std::endl;
-    return (0);
+std::string const &Weapon::getType( void ) {
+	return (this->_type);
+}
+
+void	Weapon::setType(std::string str) {
+	this->_type = str;
 }

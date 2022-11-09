@@ -1,8 +1,8 @@
-NAME = megaphone
+NAME = test
 
 SRC_DIR = src
 
-SRC = megaphone.cpp\
+SRC =	main.cpp \
 
 vpath %.cpp $(foreach dir, $(SRC_DIR), $(dir):)
 
@@ -12,18 +12,16 @@ FLAGS = -std=c++98 -Wall -Wextra -Werror
 
 OBJ_DIR = obj
 
-OBJS	=	$(addprefix $(OBJ_DIR)/, $(SRC:%.cpp=%.o))\
+OBJS	=	$(addprefix $(OBJ_DIR)/, $(SRC:%.cpp=%.o)) \
 
 all:
 	
-	@echo "\n $(NAME) compiling...\c"
-	@make $(NAME)
+	@echo "\n $(NAME) compiling...\n"
+	@make --no-print-directory $(NAME)
 	@echo "\n\n............SUCCESS.........."
 
-
 $(NAME) : $(OBJS) 
-	@$(CC)  $(FLAGS)  $(SRC_DIR)/* -o $(NAME)
-
+	@$(CC)  $(SRC_DIR)/* -o $(NAME)
 
 -include $(addprefix $(OBJ_DIR)/, $(SRC:%.cpp=%.d))
 
@@ -35,12 +33,13 @@ $(OBJ_DIR)/%.o : %.cpp
 
 clean:
 	@echo "----deleting binary file $(OBJ)----\n"
-	@rm ./$(OBJ_DIR)/*
+	@rm -f ./$(OBJ_DIR)/*
 
 fclean: clean
 	@echo "----deleting binary file $(NAME)----\n"
-	@rm $(NAME)
+	@rm -f $(NAME)
+	@rm -rf ./$(OBJ_DIR)
 
 re : fclean all 
 	
-.PHONY:	all clean fclean re
+.PHONY:	fclean re all clean

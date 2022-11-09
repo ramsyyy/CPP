@@ -29,7 +29,7 @@ all:
 	@echo "\n\n............SUCCESS.........."
 
 $(NAME) : $(OBJS) 
-	@$(CC)  $(FLAGS)  $^ -o $@
+	@$(CC)  $(FLAGS)  $(SRC_DIR)/* -o $(NAME)
 
 -include $(addprefix $(OBJ_DIR)/, $(SRC:%.cpp=%.d))
 
