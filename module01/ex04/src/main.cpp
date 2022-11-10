@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 11:19:18 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/09 19:31:05 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/10 17:38:52 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 #include <cstring>
 
 void occurence(std::string &src , char *occ, char *dst) {
-    for (int q = 0; q < (int)src.length(); q++)
+    for (std::__cxx11::basic_string<char>::size_type q = 0; q < src.length(); q++)
     {
-        int i = src.find(occ);
+        int i = src.find(occ , q);
+         
         if (i >= 0) {
-            src.insert(i , dst);
-            i = src.find(occ);
             src.erase(i , strlen(occ));
+            src.insert(i , dst);
+            q = i + strlen(dst);
         }
     }
 }
