@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 14:52:29 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/11 21:44:21 by raaga            ###   ########.fr       */
+/*   Created: 2022/11/11 22:20:22 by raaga             #+#    #+#             */
+/*   Updated: 2022/11/11 22:26:08 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ClapTrap.hpp"
-#include "../include/ScavTrap.hpp"
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
-int main() {
-    ScavTrap ff;
-    ScavTrap a("ramsy");
-    ScavTrap b(a);
-    ScavTrap d("rrrr");
-    ScavTrap c = d;
-    ClapTrap e("draaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+# include <iostream>
+# include <string>
+
+class Animal {
+    public :
+        Animal( void );
+        Animal &operator( Animal const &copy );
+        Animal( Animal const &copy);
+        
+        ~Animal( void );
     
-    a.attack( " ramsy ");
-    e.attack("ramsyyyy");
-    b.attack("rrrr");
-    c.gateKeeper();
-    return (0);
-}
+    protected :
+        std::string type;
+    
+};
+
+#endif

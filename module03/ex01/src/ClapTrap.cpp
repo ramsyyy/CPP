@@ -6,21 +6,18 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:43:13 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/10 18:39:21 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/11 21:34:32 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ClapTrap.hpp"
-#include <string>
-#include <iostream>
 
-
-ClapTrap::ClapTrap( void ) : _hitPoints(10), _energyPoints(10) , _attackDamage(0){
-    std::cout << "deafult constructor called " << std::endl;
+ClapTrap::ClapTrap( void ) : _name("Naze"), _hitPoints(10), _energyPoints(10) , _attackDamage(0) {
+    std::cout << "ClapTrap deafult constructor called " << this->_name << std::endl;
 }
 
-ClapTrap::ClapTrap( std::string name ) : _name(name), _hitPoints(10), _energyPoints(10) , _attackDamage(0) {
-    std::cout << "initing name constructor called " << std::endl;
+ClapTrap::ClapTrap( std::string const name ) : _name(name), _hitPoints(10), _energyPoints(10) , _attackDamage(0) {
+    std::cout << "ClapTrap initing name constructor called " << this->_name << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=( ClapTrap const &copy ) {
@@ -35,8 +32,16 @@ ClapTrap::ClapTrap( ClapTrap const &copy ) {
     *this = copy;
 }
 
+ClapTrap::ClapTrap( std::string const name, int hitPoint, int energyPoint, int attackDamage) {
+    this->_name = name;
+    this->_hitPoints = hitPoint;
+    this->_energyPoints = energyPoint;
+    this->_attackDamage = attackDamage;
+    std::cout << "ClapTrap initing all point constructor called " << this->_name << std::endl;
+}
+
 ClapTrap::~ClapTrap( void ) {
-    std::cout << "destructor called " << std::endl;
+    std::cout << "ClapTrap destructor called " << this->_name << std::endl;
 }
 
 int ClapTrap::getHitPoints( void ) const{
@@ -74,6 +79,6 @@ void ClapTrap::attack( const std::string &target ) {
             << ", causing " << this->_attackDamage << " point of damage!" << std::endl;
         this->_energyPoints -= 1;
     }
-    else std::cout << "Action not possible" << std::endl;
+    else std::cout << "ClapTrap Action not possible" << std::endl;
 }
 

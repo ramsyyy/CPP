@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:40:45 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/10 18:39:49 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/11 21:00:21 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 # include <iostream>
 
 class ClapTrap {
-	private :
+	protected :
 		std::string _name;
 		int        	_hitPoints;
 		int			_energyPoints;
-		int 		_attackDamage;       
+		int 		_attackDamage;      
+		ClapTrap( std::string const name, int hitPoint, int energyPoint, int attackDamage); 
 	  
 	public :
 	
@@ -39,7 +40,6 @@ class ClapTrap {
 		void	takeDamage( unsigned int amount );
 		void	beRepaired( unsigned int amount );
 		void	attack( const std::string &target );
-		
 	
 };
 

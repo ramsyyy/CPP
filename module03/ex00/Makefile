@@ -46,6 +46,7 @@ clean:
 fclean: clean
 	@echo "----deleting binary file $(NAME)----\n"
 	@rm -f $(NAME)
+	@rm -rf ./$(OBJ_DIR)
 
 re : fclean all 
 	
