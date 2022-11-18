@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 13:57:12 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/18 18:03:31 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/18 18:25:03 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@
 
 int main()
 {
-
-	Dog *basic = new Dog();
-	Dog *tmp = basic;
-	tmp->makeSound();
-	delete basic;
-	//tmp->makeSound();
 	/*
 std::cout << GB << "Mandatory Polymorphism tests :\n" << END;
 	{
@@ -74,8 +68,7 @@ std::cout << GB << "Mandatory Polymorphism tests :\n" << END;
 		std::cout << YB << "Destructors :\n" << END;
 		for (int i = 0; i < 10; ++i)
 			delete hoard[i];
-	}
-
+	}*/
 	std::cout << GB << "\n Deep copy tests :\n" << END;
 	{
 		Animal	*deep_test[2];
@@ -102,7 +95,7 @@ std::cout << GB << "Mandatory Polymorphism tests :\n" << END;
 		std::cout << YB << "Destructors array :\n" << END;
 		delete deep_test[0];
 		delete deep_test[1];
-	}*/
+	}
 
 	return (0);
 }
