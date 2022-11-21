@@ -82,3 +82,13 @@ void Bureaucrat::levelDown( void ) {
 		std::cout << e.what() << std::endl;
 	}
 }
+
+void Bureaucrat::signForm(Form &a) {
+	try {
+		a.beSigned(*this);
+		std::cout << this->_name << " signed " << a.getName() << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cout << this->_name << " couldn't sign " << a.getName() << " because " << e.what() << std::endl;
+	}
+}

@@ -15,6 +15,9 @@
 
 # include <iostream>
 # include <string>
+# include "Form.hpp"
+
+class Form;
 
 class Bureaucrat{
 public :
@@ -43,7 +46,7 @@ public :
 	std::string getName( void ) const;
 	void levelUp( void ) ;
 	void levelDown( void ) ;
-
+	void signForm(Form &a);
 
 private : 
 	std::string const	_name;

@@ -11,12 +11,18 @@
 /* ************************************************************************** */
 
 #include "../include/Bureaucrat.hpp"
+#include "../include/Form.hpp"
 
 int main () {
-    Bureaucrat a("ramsy", 149);
-    Bureaucrat b("donal", -1);
+    Bureaucrat a("ramsy", 16);
+    //Bureaucrat b("donal", -1);
+    Form    q("inscription", 0, 15, 25);
 
-    std::cout << b << std::endl;
+
+    std::cout << q << std::endl;
+    a.signForm(q);
+    std::cout << q << std::endl;
+    /*std::cout << b << std::endl;
     std::cout << a.getName() << " " << a.getGrade() << std::endl;
     a.levelUp();
     std::cout << a.getName() << " " << a.getGrade() << std::endl;
@@ -26,6 +32,6 @@ int main () {
     std::cout << a.getName() << " " << a.getGrade() << std::endl;
     a.levelDown();
     std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    std::cout << a << std::endl;
+    std::cout << a << std::endl;*/
     return (1);
 }
