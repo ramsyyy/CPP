@@ -4,19 +4,14 @@ Form::Form( void ) {
 	std::cout << "Form Default Constructor called" << std::endl;
 }
 
-Form::Form(std::string name, bool sign, int gradeSign, int gradeExec) : _name(name), _signed(sign) {
+Form::Form(std::string name, int gradeSign, int gradeExec) : _name(name), _signed(0) {
 	std::cout << "Form initing constructor called" << std::endl;
-	try {
-		if (gradeSign < 1 || gradeExec < 1)
-			throw Form::GradeTooLowException();
-		else if (gradeSign > 150 || gradeExec > 150)
-			throw Form::GradeTooHighException();
-		this->_gradeSign = gradeSign;
-		this->_gradeExec = gradeExec;
-	}
-	catch( std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+	if (gradeSign < 1 || gradeExec < 1)
+		throw Form::GradeTooLowException();
+	else if (gradeSign > 150 || gradeExec > 150)
+		throw Form::GradeTooHighException();
+	this->_gradeSign = gradeSign;
+	this->_gradeExec = gradeExec;
 }
 
 Form::~Form( void ) {

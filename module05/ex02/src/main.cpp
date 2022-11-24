@@ -14,14 +14,28 @@
 #include "../include/Form.hpp"
 #include "../include/ShrubberyCreationForm.hpp"
 
-int main () {
-    Form *b = new PresidentialPardonForm("jardin");
-    Bureaucrat a("ramsy", 150);
+void test_form(Form &form, Bureaucrat &correct, Bureaucrat &wrong)
+{
+	wrong.signForm(form);
+	correct.executeForm(form);
+	correct.signForm(form);
+	wrong.executeForm(form);
+	correct.executeForm(form);
+}
 
-        a.signForm(*b);
-        a.executeForm(*b);
+int main()
+{
+	srand(time(NULL));
 
-    
-    delete b;
-    return (1);
+	Bureaucrat jaeskim("jaeskim", 1);
+	Bureaucrat wrong("wrong", 150);
+
+	ShrubberyCreationForm form1("target");
+	RobotomyRequestForm form2("target");
+	PresidentialPardonForm form3("target");
+	test_form(form1, jaeskim, wrong);
+	test_form(form2, jaeskim, wrong);
+	test_form(form3, jaeskim, wrong);
+
+	return 0;
 }

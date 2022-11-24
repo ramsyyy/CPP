@@ -26,24 +26,18 @@ void *Intern::ppf( std::string s) {
 }
 
 Form	*Intern::makeForm( std::string s1, std::string s2) {
-	try {
-		std::string formName[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-		void *(Intern::*ptr_fct[3])(std::string) = {&Intern::scf, &Intern::rrf, &Intern::ppf};
-		Form *a = NULL;
-		for(int i = 0; i < 3; i++) {
-			if (s1 == formName[i]) {
-				a = (Form *)(this->*ptr_fct[i])(s2);
-				break ;
-			}
+	std::string formName[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+	void *(Intern::*ptr_fct[3])(std::string) = {&Intern::scf, &Intern::rrf, &Intern::ppf};
+	Form *a = NULL;
+	for(int i = 0; i < 3; i++) {
+		if (s1 == formName[i]) {
+			a = (Form *)(this->*ptr_fct[i])(s2);
+			break ;
 		}
-		if (a == NULL) 
-			throw NameFormNotExist();
-		std::cout << "Intern create " << a->getName()  << std::endl;
-		return (a);
 	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl << "Intern can't create this Form !" << std::endl;
-		return (NULL);
-	}
+	if (a == NULL) 
+		throw NameFormNotExist();
+	std::cout << "Intern create " << a->getName()  << std::endl;
+	return (a);
 }
 

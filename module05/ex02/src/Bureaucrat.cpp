@@ -22,17 +22,11 @@ Bureaucrat::~Bureaucrat( void ) {
 
 Bureaucrat::Bureaucrat( std::string name, int n) : _name(name) {
 	std::cout << "Bureaucrat initing constructor called" << std::endl;
-	try {
-		
-		if (n < 1)
-			throw Bureaucrat::GradeTooLowException();
-		else if (n > 150)
-			throw Bureaucrat::GradeTooHighException();
-		this->_grade = n;
-	}
-	catch( std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+	if (n < 1)
+		throw Bureaucrat::GradeTooLowException();
+	else if (n > 150)
+		throw Bureaucrat::GradeTooHighException();
+	this->_grade = n;
 }
 
 Bureaucrat	&Bureaucrat::operator=( Bureaucrat const &copy ) {
@@ -61,26 +55,16 @@ std::string Bureaucrat::getName( void ) const{
 	return (this->_name);
 }
 
-void Bureaucrat::levelUp( void ) {
-	try {
-		if (this->_grade - 1 < 1)
-			throw GradeTooLowException();
-		this->_grade--;
-	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+void Bureaucrat::levelUp( int i ) {
+	if (this->_grade - i < 1)
+		throw GradeTooLowException();
+	this->_grade -= i;
 }
 
-void Bureaucrat::levelDown( void ) {
-	try {
-		if (this->_grade + 1 > 150)
-			throw GradeTooHighException();
-		this->_grade++;
-	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+void Bureaucrat::levelDown( int i ) {
+	if (this->_grade + i > 150)
+		throw GradeTooHighException();
+	this->_grade += i;
 }
 
 void Bureaucrat::signForm(Form &a) {

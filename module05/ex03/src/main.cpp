@@ -14,77 +14,47 @@
 #include "../include/Form.hpp"
 #include "../include/Intern.hpp"
 
-int main () {
 
-	ShrubberyCreationForm shrubbery("Home");
-	RobotomyRequestForm robotomy("Morty");
-	PresidentialPardonForm pardon("Rick Sanchez");
-	Bureaucrat mike("Mike", 150);
-	Bureaucrat jon("Jon", 120);
-	Bureaucrat steve("Steve", 3);
-	
-	/* Try to execute forms without being signed */
+void test_form(Form &form, Bureaucrat &correct, Bureaucrat &wrong)
+{
+	wrong.signForm(form);
+	correct.executeForm(form);
+	correct.signForm(form);
+	wrong.executeForm(form);
+	correct.executeForm(form);
+}
+
+int main()
+{
+	srand(time(NULL));
+
+	Bureaucrat jaeskim("jaeskim", 1);
+	Bureaucrat wrong("wrong", 150);
+	Intern intern;
+
+	Form *form;
+
+	form = intern.makeForm("shrubbery creation", "target");
+	std::cout << form->getName() << std::endl;
+	test_form(*form, jaeskim, wrong);
+	delete form;
+	form = intern.makeForm("robotomy request", "target");
+	test_form(*form, jaeskim, wrong);
+	delete form;
+	form = intern.makeForm("presidential pardon", "target");
+	test_form(*form, jaeskim, wrong);
+	delete form;
+
+	try
 	{
-		try
-		{
-			std::cout << mike << std::endl;
-			std::cout << shrubbery << std::endl;
-			std::cout << robotomy << std::endl;
-			std::cout << pardon << std::endl;
-			mike.executeForm(shrubbery);
-			mike.executeForm(robotomy);
-			mike.executeForm(pardon);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what() << std::endl;
-		}
+		form = intern.makeForm("WrongName", "target");
+		test_form(*form, jaeskim, wrong);
+		delete form;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << "\n --------------------- \n\n";
-	
-	/* Sign form and try to execute without enough grade */
-	{
-		try
-		{
-			std::cout << mike << std::endl;
-			std::cout << jon << std::endl;
-			std::cout << shrubbery << std::endl;
-			std::cout << robotomy << std::endl;
-			std::cout << pardon << std::endl;
-			shrubbery.beSigned(jon);
-			mike.executeForm(shrubbery);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-	}
-
-	std::cout << "\n --------------------- \n\n";
-	
-	/* Sign forms and execute them */
-	{
-		try
-		{
-			robotomy.beSigned(steve);
-			pardon.beSigned(steve);
-			std::cout << shrubbery << std::endl;
-			std::cout << robotomy << std::endl;
-			std::cout << pardon << std::endl;
-			
-			std::cout << "\n --------------------- \n\n";
-			steve.executeForm(shrubbery);
-			std::cout << "\n --------------------- \n\n";
-			steve.executeForm(robotomy);
-			std::cout << "\n --------------------- \n\n";
-			steve.executeForm(pardon);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-	}
-	
-	std::cout << "\n --------------------- \n\n";
+	return 0;
 }

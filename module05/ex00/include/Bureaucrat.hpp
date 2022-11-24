@@ -41,8 +41,8 @@ public :
 
 	int getGrade( void ) const;
 	std::string getName( void ) const;
-	void levelUp( void ) ;
-	void levelDown( void ) ;
+	void levelUp( int i ) ;
+	void levelDown( int i ) ;
 
 
 private : 

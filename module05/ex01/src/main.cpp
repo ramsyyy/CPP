@@ -14,24 +14,27 @@
 #include "../include/Form.hpp"
 
 int main () {
-    Bureaucrat a("ramsy", 16);
-    //Bureaucrat b("donal", -1);
-    Form    q("inscription", 0, 15, 25);
+	Bureaucrat jaeskim("jaeskim", 10);
 
+	try
+	{
+		jaeskim.levelUp(9);
+		std::cout << jaeskim << std::endl;
+		jaeskim.levelUp(1);
+		std::cout << jaeskim << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 
-    std::cout << q << std::endl;
-    a.signForm(q);
-    std::cout << q << std::endl;
-    /*std::cout << b << std::endl;
-    std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    a.levelUp();
-    std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    a.levelDown();
-    std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    a.levelDown();
-    std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    a.levelDown();
-    std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    std::cout << a << std::endl;*/
-    return (1);
+	Form formA("a", 10, 10);
+	Form formB("b", 10, 10);
+	jaeskim.signForm(formA);
+	jaeskim.levelDown(10);
+	jaeskim.signForm(formB);
+	std::cout << formA << std::endl;
+	std::cout << formB << std::endl;
+	return 0;
+
 }

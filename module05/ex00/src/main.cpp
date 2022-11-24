@@ -13,19 +13,31 @@
 #include "../include/Bureaucrat.hpp"
 
 int main () {
-    Bureaucrat a("ramsy", 149);
-    Bureaucrat b("donal", -1);
+	Bureaucrat b("jaeskim", 150);
 
-    std::cout << b << std::endl;
-    std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    a.levelUp();
-    std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    a.levelDown();
-    std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    a.levelDown();
-    std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    a.levelDown();
-    std::cout << a.getName() << " " << a.getGrade() << std::endl;
-    std::cout << a << std::endl;
-    return (1);
+	try
+	{
+		b.levelUp(9);
+		std::cout << b << std::endl;
+		b.levelUp(1);
+		std::cout << b << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	try
+	{
+		b.levelDown(140);
+		std::cout << b << std::endl;
+		b.levelDown(10);
+		std::cout << b << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	return 0;
 }
