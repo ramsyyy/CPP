@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:01:57 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/25 20:01:30 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/30 18:39:54 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ Scalar::Scalar( char * str) : _str(str) {
 	this->_char = false;
 	this->_allNumber = false;
 	incorrectArg(str);
-	findType(str);
+	if (this->_type == "")
+		findType(str);
 	std::string tab[4] = {"int", "char", "float", "double"};
 	void(Scalar::*ptr_fct[4])(std::string) = {&Scalar::setInt, &Scalar::setChar, &Scalar::setFloat, &Scalar::setDouble};
 	try {
-		std::cout << this->_type <<std::endl;
-		for(int i = 0; i < 3; i++) {
+		for(int i = 0; i < 4; i++) {
 		if (this->_type == tab[i]) {
 			(this->*ptr_fct[i])(str);
 			break ;
@@ -35,27 +35,10 @@ Scalar::Scalar( char * str) : _str(str) {
 	}
 	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		
 	}
-	/*
-	try {
-		std::cout << "Int : ";
-		setInt(str);
-		std::cout << this->_int << std::endl;
-	}
-	catch (Scalar::ImpossibleException &e) {
-		std::cout << e.what() << std::endl;
-	}
-
-	try {
-		std::cout << "Char : ";
-		setChar(str);
-		std::cout << "\'" << this->_charValue << "\'" << std::endl;
-	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-	setFloat(str);*/
+	this->displayResult();
+	
 }
 
 Scalar::~Scalar( void ) {
@@ -65,7 +48,7 @@ Scalar::~Scalar( void ) {
 void	Scalar::findType( std::string str ) {
 	if (this->_allNumber)
 		this->_type = "int";
-	else if (this->_point && this->_charF)
+	else if (this->_charF)
 		this->_type = "float";
 	else if (this->_char && str.size() == 1)
 		this->_type = "char";
@@ -76,6 +59,17 @@ void	Scalar::findType( std::string str ) {
 void	Scalar::incorrectArg( std::string str ) {
 	int point = 0;
 	
+	if (str == "nanf" ||  str == "+inff" || str == "-inff") {
+		this->_type = "float";
+		this->_nan = true;
+		return ;
+	}
+	else if (str == "nan" || str == "-inf" || str == "+inf") {
+		this->_type = "double";
+		this->_nan = true;
+		return ;
+	}
+	this->_nan = false;
 	for (int i = 0; str[i] != 0; i++) {
 		if (i == 0 && str[i] == '-') i++;
 		if (!isdigit(str[i])) {
@@ -92,6 +86,7 @@ void	Scalar::incorrectArg( std::string str ) {
 				if (point < 1 && str[i] == '.') {
 					point++;
 					this->_point = true;
+					this->_posPoint = i;
 				}
 				else throw Scalar::ErrorArg();
 			}
@@ -102,41 +97,86 @@ void	Scalar::incorrectArg( std::string str ) {
 }
 
 void	Scalar::setInt( std::string str ) {
-	if (this->_allNumber) {
-		this->_long = (atol(str.c_str()));
+	this->_long = (atof(str.c_str()));
+	try {
 		if (this->_long > 	2147483647 || this->_long < -2147483648) throw Scalar::ImpossibleException();
-			this->_int = (int)this->_long;
+			this->_int = atoi(str.c_str());
 	}
-	else if (this->_charF || this->_point) {
-		this->_long = (atol(str.c_str()));
-		if (this->_long > 	2147483647 || this->_long < -2147483648) throw Scalar::ImpossibleException();
-			this->_int = (int)this->_long;
+	catch (std::exception &e) {
+		this->_float = static_cast<float>((atof(str.c_str())));
+		this->_double = static_cast<double>((atof(str.c_str())));
+		return ;
 	}
-	else if (this->_char && str.size() == 1){
-		this->_int = static_cast<int>(*str.c_str());
-	}
-	std::cout << this->_int << std::endl;
+	this->_float = static_cast<float>(this->_int);
+	this->_double = static_cast<double>(this->_int);
+	if (this->_int < -127 || this->_int > 127) throw ImpossibleException();
+	if (this->_int <= 31 || this->_int == 127) throw NoDisplayException();
+	this->_charValue = static_cast<char>(this->_int);
+
 }
 
 void	Scalar::setChar( std::string str ) {
-	if (this->_char && str.size() == 1){
-		if (*str.c_str() <= 31 || *str.c_str() == 127 ) throw NoDisplayException();
-		this->_charValue = *str.c_str();
-	}
-	else {
-		int tmp = atoi(str.c_str());
-		if (tmp < -127 || tmp > 127) throw ImpossibleException();
-		if (tmp <= 31 || tmp == 127) throw NoDisplayException();
-		this->_charValue = tmp;
-	}
-	std::cout << this->_charValue << std::endl;
+	this->_charValue = *str.c_str();
+	this->_int = static_cast<int>(this->_charValue);
+	this->_float = static_cast<float>(this->_charValue);
+	this->_double = static_cast<double>(this->_charValue);
 }
 
+
 void	Scalar::setFloat( std::string str ) {
-	
+	this->_float = atof(str.c_str());
+	this->_double = static_cast<double>(this->_float);
+	if (this->_float > 2147483648 || this->_float < -2147483648) throw Scalar::ImpossibleException();
+	this->_int = static_cast<int>(this->_float);
+	this->_charValue = static_cast<char>(this->_float);
 }
 
 void	Scalar::setDouble(std:: string str) {
-	(void)str;
-	std::cout << "jhsgadhjfgajksdgfhjsdgjf" << std::endl;
+	this->_double = atof(str.c_str());
+	this->_float = static_cast<float>(this->_double);this->_float = static_cast<float>(this->_double);
+	if (this->_double > 2147483647 || this->_double < -2147483648) throw Scalar::ImpossibleException();
+	this->_int = static_cast<int>(this->_double);
+	this->_charValue = static_cast<char>(this->_double);
+}
+
+bool	Scalar::addPoint(void) {
+	if (!this->_point) return true;
+	for (int i = this->_posPoint + 1; i < (int)this->_str.length(); i++) {
+		if (this->_str[i] != '0') return false;
+	}
+	return true;
+}
+
+void	Scalar::displayResult(void) {
+	
+	
+	try {
+		std::cout << "char : " ;
+		//std::cout << static_cast<float>(this->_charValue) <<std::endl ;
+		if (this->_nan || this->_double >= 128 || this->_double <= -128) throw Scalar::ImpossibleException();
+		if (this->_charValue < 32 || this->_charValue == 127) throw NoDisplayException();
+		std::cout << this->_charValue << std::endl;
+	}
+	catch( std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	try {
+		std::cout << "int : " ;
+		if (this->_nan || this->_long > 	2147483647 || this->_long < -2147483648) throw Scalar::ImpossibleException();
+		std::cout << this->_int << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	std::cout << "float : ";
+	std::cout << this->_float ;
+	if ( !this->_point  || ((this->_str[_posPoint + 1] <= '0'|| this->_str[_posPoint + 1] > '9') && (this->addPoint())))
+		if (this->_nan == false && (this->_float > -1000000 && this->_float <  1000000)) std::cout << ".0"  ;
+	std::cout << "f" << std::endl;
+ 	std::cout << "double : " ;
+	std::cout << this->_double ;
+	if ( !this->_point || ((this->_str[_posPoint + 1] <= '0'|| this->_str[_posPoint + 1] > '9') && (this->addPoint())))
+	if (this->_nan == false && (this->_double > -1000000 && this->_double <  1000000)) std::cout << ".0" ;
+	std::cout << std::endl;
+	
 }

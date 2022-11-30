@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:02:03 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/25 19:56:07 by raaga            ###   ########.fr       */
+/*   Updated: 2022/11/30 18:12:11 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ public :
 	void	setChar( std::string str );
 	void	setFloat( std::string str );
 	void	setDouble( std::string str);
+	void	displayResult();
+	bool	addPoint();
 
 	class ImpossibleException : public std::exception {
 		public :
@@ -52,8 +54,10 @@ public :
 	};
 
 private : 
-	std::string			_type;
+	bool				_nan ;
+	std::string			_type = "";
 	bool				_point;
+	int					_posPoint;
 	bool				_charF;
 	bool				_char;
 	bool				_allNumber;
@@ -62,6 +66,7 @@ private :
 	int					_int;
 	char				_charValue;
 	float				_float;
+	double				_double;
 
 };
 
