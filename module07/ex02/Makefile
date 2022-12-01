@@ -1,20 +1,14 @@
-NAME = data
+NAME = Array
 
 SRC_DIR = src
 
 SRC =	main.cpp \
-		A.cpp		\
-		B.cpp		\
-		C.cpp		\
 
 vpath %.cpp $(foreach dir, $(SRC_DIR), $(dir):)
 
 INC_DIR =	$(shell find include -type d)
 
-INC =	./include/Base.hpp\
-		./include/A.hpp		\
-		./include/B.hpp		\
-		./include/C.hpp		\
+INC =	./include/Array.hpp \
 
 CC = c++
 
