@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:01:12 by raaga             #+#    #+#             */
-/*   Updated: 2022/12/01 20:11:52 by raaga            ###   ########.fr       */
+/*   Updated: 2022/12/07 16:06:43 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define ARRAY_HPP
 
 # include <iostream>
-
-
 
 template<typename T>
 class Array {
@@ -26,11 +24,12 @@ class Array {
         }
         ~Array<T>( void ) {
             std::cout << "Destructor called" << std::endl;
+            delete [] this->_array;
         }
         Array<T>(unsigned int i) : _size(i) {
             std::cout << "initing Array constructor" << std::endl;
             _array = new T[i];
-            _array++;
+            
         }
         Array<T> &operator=(Array<T> const &copy) {
             this->_size = copy._size;
@@ -40,10 +39,24 @@ class Array {
             }
             return (*this);
         }
-        Array<T>(Array<T> const &copy) {
-            *this = &copy;
+        T   &operator[](unsigned int const i) const{
+            if (i < 0 || i >= this->_size) {
+                throw ErrorTabException();
+            }
+            return (this->_array[i]);
         }
-
+        Array<T>(Array<T> const &copy) {
+            *this = copy;
+        }
+        class ErrorTabException : public std::exception {
+            public :
+                virtual const char * what() const throw() {
+                    return ("this grade of tab is fault");
+                }
+        };
+        unsigned int size( void ) const{
+            return (this->_size);
+        }
         void affiche(void) {
             for(int i = 0; i < static_cast<int>(this->_size); i++) {
                 std::cout << this->_array[i] << std::endl ;
