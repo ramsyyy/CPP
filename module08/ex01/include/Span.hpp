@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:43:19 by raaga             #+#    #+#             */
-/*   Updated: 2022/12/07 19:14:26 by raaga            ###   ########.fr       */
+/*   Updated: 2022/12/09 19:08:36 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <string>
+# include <vector>
+# include <algorithm>
 
 class Span {
 public :
@@ -24,8 +26,8 @@ public :
     Span	&operator=( Span const &copy );
     Span( Span const &copy );
 
+    int     shortestSpan( void );
     void    addNumber(int number);
-    
     
     class ErrorSize : public std::exception {
         public :
@@ -37,7 +39,7 @@ public :
 private : 
     
     unsigned int _size;
-    int *_array;
+    std::vector<int> _array;
 };
 
 #endif
