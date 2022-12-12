@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:43:22 by raaga             #+#    #+#             */
-/*   Updated: 2022/12/09 19:41:25 by raaga            ###   ########.fr       */
+/*   Updated: 2022/12/12 17:50:26 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Span::Span( void ) {
 }
 
 Span::Span( unsigned int N ) : _size(N) , _array(N){
-    std::cout << "Span initing Constructor called" << this->_array.size() << std::endl;
+    std::cout << "Span initing Constructor called" << std::endl;
     
 }
 
@@ -43,17 +43,37 @@ Span::Span( Span const &copy ) {
 }
 
 void    Span::addNumber(int number) {
-    std::cout << "LA : " << i << " " << this->_array.size() << std::endl;
-    if ((unsigned int)i >= this->_size)
+    if ((unsigned int)this->_stock >= this->_size)
         throw ErrorSize();
-    if (this->_array.begin() + i != this->_array.end())
-        this->_array.erase(this->_array.begin() + i);
-    this->_array.insert(this->_array.begin() + i ,number);
-    i++;
+    if (this->_array.begin() + this->_stock != this->_array.end())
+        this->_array.erase(this->_array.begin() + this->_stock);
+    this->_array.insert(this->_array.begin() + this->_stock ,number);
+    this->_stock++;
+}
+
+void    Span::affiche( void ) {
+    for (unsigned long  i = 0; i < this->_array.size(); i++) {
+        std::cout << this->_array[i] << std::endl;
+    }
+}
+
+void    Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+    if ((unsigned int)this->_stock >= this->_size)
+        throw ErrorSize();
+    std::vector<int>::iterator it = this->_array.begin();
+    for (std::vector<int>::iterator i = begin; i != end; i++) {
+        *it = *i;
+        it++;
+        this->_stock++;
+    }
+    for ( unsigned long i = 0; i < this->_array.size(); i++) {
+        std::cout << this->_array[i] << std::endl;
+    }
 }
 
 int     Span::shortestSpan( void ) {
     
+    if (this->_stock <= 1) throw ErrorSize();
     int tmp = this->_array[0] - this->_array[1];
     if (tmp < 0) tmp = -1 * tmp;
     for (int i = 0; i < static_cast<int>(this->_array.size()); i++) {
@@ -74,4 +94,17 @@ int     Span::shortestSpan( void ) {
     return (tmp);
 }
 
-int Span::i = 0;
+int     Span::longestSpan( void ) {
+    if (this->_stock <= 1) throw ErrorSize();
+    int max = this->_array[0];
+    int min = this->_array[0];
+
+    for (int i = 1; i < static_cast<int>(this->_array.size()); i++) {
+        if (min > this->_array[i])
+            min = this->_array[i];
+        if (max < this->_array[i])
+            max = this->_array[i];
+    }
+    return ((max - min)>0?(max - min):(-1 * (max - min)));
+}
+

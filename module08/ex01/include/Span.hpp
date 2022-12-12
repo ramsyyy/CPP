@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:43:19 by raaga             #+#    #+#             */
-/*   Updated: 2022/12/09 19:08:36 by raaga            ###   ########.fr       */
+/*   Updated: 2022/12/12 17:48:04 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,23 @@ public :
     Span( Span const &copy );
 
     int     shortestSpan( void );
+    int     longestSpan( void );
     void    addNumber(int number);
+    void    addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+    void    affiche( void );
     
     class ErrorSize : public std::exception {
         public :
         virtual const char *what() const throw() {
-            return ("Trop de nombre");
+            return ("Probleme de tableau");
         }
     };
-    static  int i;
-private : 
     
+private : 
+    int _stock = 0;
     unsigned int _size;
     std::vector<int> _array;
 };
 
 #endif
+

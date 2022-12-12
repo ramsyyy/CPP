@@ -6,30 +6,73 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:42:13 by raaga             #+#    #+#             */
-/*   Updated: 2022/12/09 19:41:30 by raaga            ###   ########.fr       */
+/*   Updated: 2022/12/12 17:53:14 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../include/Span.hpp"
 
 
-int main() {
-    Span sp = Span(5);
-    std::vector<int> array(5);
-    /*for(int i = 0; i < static_cast<int>(array.size()); i++) {
-        std::cout << array[i] << std::endl;
-    }*/
-    try {
-    sp.addNumber(6);
-    sp.addNumber(3);
-    sp.addNumber(12);
-    sp.addNumber(9);
-    sp.addNumber(11);
-    //sp.addNumber(45); }
-    }
-    catch( std::exception &e) { std::cout << e.what() << std::endl;}
+int main() 
+{
+	std::cout << "---BASIC TEST---" << std::endl;
+
+	Span sp = Span(10000);
+
+	sp.addNumber(5);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+    //sp.affiche();
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+
+	std::cout << "---ERROR TESTS---" << std::endl;
+
+	try
+	{
+		Span sp1 = Span(2);
+		sp1.addNumber(4);
+		sp1.addNumber(3);
+		sp1.addNumber(42);
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	try
+	{
+		Span sp2 = Span(2);
+		sp2.addNumber(3);
+		std::cout << sp2.shortestSpan() << std::endl;
+
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << "---RANGE ITERATORS TEST---" << std::endl;
+
+	Span				sp3(3);
+	std::vector<int>	tmp;
+
+	tmp.push_back(25);
+	tmp.push_back(5);
+	tmp.push_back(42);
+	sp3.addNumber(tmp.begin(), tmp.end());
+   try{ sp3.addNumber(120);}
+   catch(std::exception &e) {std::cout << e.what() << std::endl;}
+	std::cout << sp3.shortestSpan() << std::endl;
+    sp3.affiche();
+	std::cout << "---ADVANCED TEST---" << std::endl;
+
+	Span sp4 = Span(15000);
+    std::vector<int>	tp;
     
-    std::cout << sp.shortestSpan() << std::endl;
-   // std::cout << sp.longestSpan() << std::endl;
-    return 0;
-}
+	/*sp4.randomNumber();
+	std::cout << sp4.shortestSpan() << std::endl;
+	std::cout << sp4.longestSpan() << std::endl;*/
+    }
