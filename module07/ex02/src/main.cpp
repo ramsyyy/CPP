@@ -6,12 +6,13 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:01:13 by raaga             #+#    #+#             */
-/*   Updated: 2022/12/07 14:00:53 by raaga            ###   ########.fr       */
+/*   Updated: 2022/12/19 18:13:01 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Array.hpp"
 #include <iostream>
+#include <stdlib.h>
 
 #define MAX_VAL 750
 int main(int, char**)

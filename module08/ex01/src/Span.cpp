@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:43:22 by raaga             #+#    #+#             */
-/*   Updated: 2022/12/12 17:50:26 by raaga            ###   ########.fr       */
+/*   Updated: 2022/12/19 18:14:58 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 
 
-Span::Span( void ) {
+Span::Span( void ) : _stock(0) {
 	std::cout << "Span Default Constructor called" << std::endl;
 }
 
-Span::Span( unsigned int N ) : _size(N) , _array(N){
+Span::Span( unsigned int N ) : _stock(0) , _size(N) , _array(N){
     std::cout << "Span initing Constructor called" << std::endl;
     
 }

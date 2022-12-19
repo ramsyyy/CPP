@@ -3,6 +3,7 @@ NAME = data
 SRC_DIR = src
 
 SRC =	main.cpp \
+		Base.cpp	\
 		A.cpp		\
 		B.cpp		\
 		C.cpp		\
@@ -18,7 +19,7 @@ INC =	./include/Base.hpp\
 
 CC = c++
 
-FLAGS =  -Wall -Wextra -Werror
+FLAGS =  -std=c++98 -Wall -Wextra -Werror
 
 IFLAGS = $(foreach dir, $(INC_DIR), -I $(dir))
 

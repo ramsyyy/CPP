@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 16:17:34 by raaga             #+#    #+#             */
-/*   Updated: 2022/12/01 17:03:33 by raaga            ###   ########.fr       */
+/*   Updated: 2022/12/19 18:09:53 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 #include <stdlib.h>
 
 Base    *generate( void ) {
-    srand(time(NULL));
     int i = rand() % 3 + 1;
-    if (i == 1) return (dynamic_cast<Base *>(new A));
-    else if (i == 2) return (dynamic_cast<Base *>(new B));
-    else return (dynamic_cast<Base *>(new C));
+    if (i == 1) return (new A);
+    else if (i == 2) return (new B);
+    else return (new C);
 }
 
 void    identify(Base *p) {
@@ -26,17 +25,17 @@ void    identify(Base *p) {
         A a = dynamic_cast<A &>(*p);
         std::cout << "type : A" << std::endl;
     }
-    catch (std::bad_cast &e) {
+    catch (std::exception &e) {
         try {
             B b = dynamic_cast<B &>(*p);
             std::cout << "type : B" << std::endl;
         }
-        catch (std::bad_cast &e) {
+        catch (std::exception &e) {
             try {
                 C c = dynamic_cast<C &>(*p);
                 std::cout << "type : C" << std::endl;
             }
-            catch (std::bad_cast &e) {
+            catch (std::exception &e) {
                 return ;
             }
         }
@@ -44,22 +43,22 @@ void    identify(Base *p) {
     }
 }
 
-void    identify2(Base &p) {
+void    identify(Base &p) {
     try {
         A a = dynamic_cast<A &>(p);
         std::cout << "type : A" << std::endl;
     }
-    catch (std::bad_cast &e) {
+    catch (std::exception &e) {
         try {
             B b = dynamic_cast<B &>(p);
             std::cout << "type : B" << std::endl;
         }
-        catch (std::bad_cast &e) {
+        catch (std::exception &e) {
             try {
                 C c = dynamic_cast<C &>(p);
                 std::cout << "type : C" << std::endl;
             }
-            catch (std::bad_cast &e) {
+            catch (std::exception &e) {
                 return ;
             }
         }
@@ -69,13 +68,39 @@ void    identify2(Base &p) {
 
 int main() {
     
-    Base *Salut;
-
-
-    Salut = generate();
-    identify(Salut);
-    identify2(*Salut);
+	Base *base;
     
-    delete Salut;
-    return (0);
+    srand(time(NULL));
+	std::cout << "------Ptr Tests------" << std::endl;
+	base = generate();
+	identify(base);
+	delete base;
+	base = generate();
+	identify(base);
+	delete base;
+	base = generate();
+	identify(base);
+	delete base;
+	base = generate();
+	identify(base);
+	delete base;
+	base = generate();
+	identify(base);
+	delete base;
+	std::cout << "------Ref Tests------" << std::endl;
+	base = generate();
+	identify(*base);
+	delete base;
+	base = generate();
+	identify(*base);
+	delete base;
+	base = generate();
+	identify(*base);
+	delete base;
+	base = generate();
+	identify(*base);
+	delete base;
+	base = generate();
+	identify(*base);
+	delete base;
 }

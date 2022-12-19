@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:43:19 by raaga             #+#    #+#             */
-/*   Updated: 2022/12/12 17:48:04 by raaga            ###   ########.fr       */
+/*   Updated: 2022/12/19 18:13:59 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ public :
     };
     
 private : 
-    int _stock = 0;
+    int _stock;
     unsigned int _size;
     std::vector<int> _array;
 };

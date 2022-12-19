@@ -6,11 +6,12 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:35:45 by raaga             #+#    #+#             */
-/*   Updated: 2022/11/30 19:52:13 by raaga            ###   ########.fr       */
+/*   Updated: 2022/12/19 17:53:15 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <stdint.h>
 #include "../include/Data.hpp"
 
 uintptr_t serialize(Data* ptr) {

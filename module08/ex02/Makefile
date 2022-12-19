@@ -3,17 +3,16 @@ NAME = Array
 SRC_DIR = src
 
 SRC =	main.cpp \
-		Span.cpp \
 
 vpath %.cpp $(foreach dir, $(SRC_DIR), $(dir):)
 
 INC_DIR =	$(shell find include -type d)
 
-INC =	./include/Span.hpp \
+INC =	./include/MutantStack.hpp \
 
 CC = c++
 
-FLAGS =  -Wall -Wextra -Werror
+FLAGS =  -std=c++98 -Wall -Wextra -Werror
 
 IFLAGS = $(foreach dir, $(INC_DIR), -I $(dir))
 
