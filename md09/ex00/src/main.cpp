@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:11:56 by raaga             #+#    #+#             */
-/*   Updated: 2023/03/22 21:21:32 by raaga            ###   ########.fr       */
+/*   Updated: 2023/03/22 23:49:00 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string>
 #include <stdlib.h>
 #include <map>
-#include "../include/date.hpp"
+#include "../include/BitcoinExchange.hpp"
 
 
 bool is_digits(const std::string &str)
@@ -25,21 +25,19 @@ bool is_digits(const std::string &str)
     return str.find_first_not_of("0123456789.-") == std::string::npos;
 }
 
-void    calcul(std::map<Date, float>  map, Date date, float value) {
+void    diffus(std::map<Date, float>  map, Date date, float value) {
      float tmp ;
-    if (!map[date]) {
+    if (map.find(date) == map.end()) {
         Date tmp2 = map.begin()->first;
-        for (std::map<Date, float>::iterator it = map.begin(); it != map.end(); it++) {
-           
-            if (it->first <= date && it->first >= tmp2){
+        for (std::map<Date, float>::iterator it = map.begin(); it != map.end(); it++) {  
+            if (it == map.end())
+                break ;
+            if (it != map.end() && it->first <= date && it->first >= tmp2){
                 tmp2 = it->first;
-                it++;
                 if (date.compare(tmp2) > date.compare(it->first) )
-                    tmp2 = it->first;
-                
+                    tmp2 = it->first;   
             }
         }
-        
         tmp = map.find(tmp2)->second * value;
     }
     else
@@ -67,29 +65,22 @@ int parsing(std::string &line, std::map<Date, float> &map ,bool flag = false) {
 
     std::getline(stream, month, '-');
     if (month.size() > 2 || is_digits(month) == false || (atoi(month.c_str()) > 12 || atoi(month.c_str()) < 1))
-    {
         return(std::cout << "Error: bad input => " << year << "-" << month << std::endl,0);
-    }
+        
     if (flag == false)
         std::getline(stream, day, ',');
-    else {
+    else 
         stream >> day;
-        //stream >> day;
-    }
-        //std::getline(stream, day, stream+2);
-     if (day.size() > 2)
+    if (day.size() > 2)
         return(std::cout << "Error: bad input => " << year << "-" << month << "-" << day << std::endl,0);
     if (is_digits(day) == false)
         return(std::cout << "Error: bad input => " << year << "-" << month << "-" << day << std::endl,0);
     if (atoi(day.c_str()) > 31 && atoi(day.c_str()) < 1)
         return(std::cout << "Error: bad input => " << year << "-" << month << "-" << day << std::endl,0);
-    //stream >> value ;
+    
     Date date(year, month, day);
-    while ((value[0] < '0' || value [0] > '9' )   && stream)
-    { 
+    while ((value[0] < '0' || value [0] > '9' ) && stream)
         stream >> value;
-    }
-    //std::getline(stream, value);
     if (is_digits(value) == false)
         return( std::cout << "Error: bad input => " << value << std::endl, -1);
     if (flag == true && (strtod(value.c_str(), NULL) > 1000 || strtod(value.c_str(), NULL) < 0))
@@ -98,9 +89,8 @@ int parsing(std::string &line, std::map<Date, float> &map ,bool flag = false) {
     _value = strtod(value.c_str(), NULL);
     if (flag == false)
         map.insert(std::pair<Date, float>(date, _value));
-    else {
-        calcul(map, date, _value);
-    }
+    else 
+        diffus(map, date, _value);
     return (1);
 }
 
@@ -119,13 +109,13 @@ int main(int ac , char **av) {
         {
             if (parsing(line, data) == 0)
             {
-                std::cout << "ERROR in file data" << std::endl;
+                std::cout << "ERROR in file data.csv impossible exec" << std::endl;
+                data.~map();
+                file.close();
+                line.~basic_string();
                 exit(0);
             }
         }
-        // for(std::map<Date, float>::iterator it = data.begin(); it != data.end(); it++) {
-        //     std::cout << it->first << " " << it->second << std::endl; 
-        // }
     }
     else 
         std::cout << "Error: could not open file." << std::endl;
@@ -135,10 +125,7 @@ int main(int ac , char **av) {
         std::string line2;
         getline(infile , line2);
         while (getline(infile , line2))
-        {
             parsing(line2, data, true);
-        }
-    
     }
     else 
         std::cout << "Error: could not open file." << std::endl;

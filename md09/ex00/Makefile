@@ -3,12 +3,13 @@ NAME = btc
 SRC_DIR = src
 
 SRC =	main.cpp 		\
+		BitcoinExchange.cpp \
 
 vpath %.cpp $(foreach dir, $(SRC_DIR), $(dir):)
 
 INC_DIR =	$(shell find include -type d)
 
-INC =	
+INC =	./include/BitcoinExchange.hpp
 		
 
 CC = c++
