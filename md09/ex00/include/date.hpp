@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 22:21:41 by raaga             #+#    #+#             */
-/*   Updated: 2023/03/22 00:38:18 by raaga            ###   ########.fr       */
+/*   Updated: 2023/03/22 21:12:51 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,27 @@ class Date{
 			this->_date = copy._date;
 			return (*this);
 		}
+		// Date	&operator=(Date &copy) {
+		// 	this->_year = copy._year;
+		// 	this->_month = copy._month;
+		// 	this->_day = copy._day;
+		// 	this->_date = copy._date;
+		// 	return (*this);
+		// }
 		Date( Date const &copy ){
 			*this = copy;
 		}
 		std::string get_date() const {
 			return (this->_date);
 		}
+
+		long compare(Date const &copy) {
+			long tmp = this->_year - copy._year;
+			tmp += this->_month - copy._month;
+			tmp += this->_day - copy._day;
+			return tmp;
+		}
+		
 		
 };
 
