@@ -1,9 +1,9 @@
-NAME = RPN
+NAME = PmergMe
 
 SRC_DIR = src
 
 SRC =	main.cpp 		\
-		RPN.cpp			\
+		PmergMe.cpp			\
 		
 
 
@@ -11,7 +11,7 @@ vpath %.cpp $(foreach dir, $(SRC_DIR), $(dir):)
 
 INC_DIR =	$(shell find include -type d)
 
-INC = ./include/RPN.hpp \
+INC = ./include/PmergMe.hpp \
 		
 
 CC = c++

@@ -5,20 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 17:11:56 by raaga             #+#    #+#             */
-/*   Updated: 2023/03/23 16:09:30 by raaga            ###   ########.fr       */
+/*   Created: 2023/03/23 17:27:08 by raaga             #+#    #+#             */
+/*   Updated: 2023/03/23 21:03:27 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "../include/date.hpp"
-#include "../include/BitcoinExchange.hpp"
 
+# include <iostream>
+# include "../include/PmergMe.hpp"
 
 int main(int ac, char **av) {
-    if (ac < 2) return (0);
-    BitcoinExchange   btc(av[1]);
-    btc.fill_data();
-    btc.exchange();
+    PmergMe tri;
+
+
+    tri.fill_container(ac, av);
+    std::cout << "before : ";
+    tri.show_container();
+    tri.trie_vec();
+    std::cout << std::endl;
+    std::cout << "after : ";
+    tri.show_container();
+    
     return (0);
 }
