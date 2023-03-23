@@ -6,7 +6,7 @@
 /*   By: raaga <raaga@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:29:51 by raaga             #+#    #+#             */
-/*   Updated: 2023/03/23 21:07:57 by raaga            ###   ########.fr       */
+/*   Updated: 2023/03/23 23:52:10 by raaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,58 @@ void    PmergMe::show_container() {
 	}
 }
 
-void	PmergMe::trie_vec() {
-	for(std::vector<int>::iterator it = this->vec.begin();it != this->vec.end(); it++) {
+// void	PmergMe::trie_vec() {
+// 	for(std::vector<int>::iterator it = this->vec.begin();it != this->vec.end(); it++) {
+// 		for(std::vector<int>::iterator it2 = it + 1; it2 != this->vec.end(); it2++) {
+// 			if (*it2 < *it) {
+// 				int tmp = *it2;
+// 				vec.erase(it2);
+// 				vec.insert(it, tmp);
+// 			}
+// 		}
+// 	}
+// }
 
-		if (it + 1 != this->vec.end()) {
-			for(std::vector<int>::iterator it2 = it + 1; it2 != this->vec.end(); it2++) {
-				if (*it2 < *it) {
-					std::cout << "jsuis la " << *it2 << " < " << *it << std::endl;
-					//std::vector<int>::iterator tp = it;
-					vec.insert(it, *it2);
-					// tp = it2;
-					if (it2 + 1 != this->vec.end() )
-						vec.erase(it2 + 1);
-					std::cout << "\nlalalal\n";
-					this->show_container();
-				}
+void	PmergMe::trie_vec() {
+	for(size_t i = 0; i != this->vec.size(); i++) {
+		for(size_t y = i + 1; y < this->vec.size(); y++) {
+			if (this->vec[y] < this->vec[i]) {
+				int tmp = this->vec[i];
+
+				this->vec[i] = this->vec[y];
+				this->vec[y] = tmp;
+				// vec.erase(it2);
+				// vec.insert(it, tmp);
+			}
+		}
+	}
+}
+
+
+
+
+// void	PmergMe::tire_deq() {
+// 	for(std::deque<int>::iterator it = this->deq.begin();it != this->deq.end(); it++) {
+// 		for(std::deque<int>::iterator it2 = it + 1; it2 != this->deq.end(); it2++) {
+// 			if (*it2 < *it) {
+// 				int tmp = *it2;
+// 				//deq.erase(it2);
+// 				deq.insert(it, tmp);
+// 			}
+// 		}
+// 	}
+// }
+
+void    PmergMe::tire_deq(void) {
+	for(size_t i = 0; i != this->deq.size(); i++) {
+		for(size_t y = i + 1; y < this->deq.size(); y++) {
+			if (this->deq[y] < this->deq[i]) {
+				int tmp = this->deq[i];
+
+				this->deq[i] = this->deq[y];
+				this->deq[y] = tmp;
+				// vec.erase(it2);
+				// vec.insert(it, tmp);
 			}
 		}
 	}
